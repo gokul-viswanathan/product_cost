@@ -1,0 +1,13 @@
+{
+    "name": "Product Cost",
+    "version": "1.1",
+    "manifest_version": 3,
+    "description": "Extension to quickly find the current price of your favourite product",
+    "author": "Gokul Viswanathan",
+    "action": {
+        "default_icon": "sunset.jpg",
+        "default_popup": "index.html",
+        "default_title": "Product Cost"
+    }
+
+}
