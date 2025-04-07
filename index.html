@@ -3,18 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Cost</title>
+    <title>Amazon Price Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2 {
+            color: #232f3e;
+        }
+        
+        .search-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-box button {
+            padding: 10px 15px;
+            background-color: #ff9900;
+            border: none;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        #searchResults {
+            display: none;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #searchResultsList li {
+            flex-direction: row;
+        }
+        
+        #trackedProductsList li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .product-info {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .price-change {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
+        .price-change.up {
+            color: red;
+        }
+        
+        .price-change.down {
+            color: green;
+        }
+        
+        button {
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #searchResultsList button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+        }
+        
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+        }
+        
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+        
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
 </head>
 <body>
-
-    <h3>Enter your product:</h3>
-    <input type="text" id="name" autocomplete="off" required>
-    <button id="button" type="submit" value="Product">Find product</button>
-    <h3> The price of your products</h3>
-    <ul id="products"> </ul>
-
-    <script src="script.js"></script>
+    <h1>Amazon Price Tracker</h1>
+    
+    <div class="container">
+        <h2>Search Products</h2>
+        <div class="search-box">
+            <input type="text" id="name" placeholder="Enter product name...">
+            <button id="searchButton">Search</button>
+        </div>
+        
+        <div id="searchResults">
+            <h3>Search Results</h3>
+            <ul id="searchResultsList"></ul>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Tracked Products</h2>
+        <ul id="trackedProductsList"></ul>
+    </div>
+    
+    <div id="toast"></div>
+    
+    <script src="amazon-price-tracker.js"></script>
 </body>
-
-
 </html>
